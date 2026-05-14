@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{% block title %}PRISM{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tokens.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+    {% block styles %}{% endblock %}
+  </head>
+  <body class="{% block body_class %}{% endblock %}">
+    <header class="topbar" data-topbar>
+      <a class="brand" href="{{ url_for('main.landing') }}" aria-label="PRISM home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-word">PRISM</span>
+      </a>
+
+      <button class="icon-button nav-toggle" type="button" data-nav-toggle aria-label="Open navigation">
+        <i data-lucide="menu"></i>
+      </button>
+
+      <nav class="nav-links" data-nav-links aria-label="Primary navigation">
+        {% if current_user.is_authenticated %}
+          <a href="{{ url_for('main.analyze') }}"><i data-lucide="scan-line"></i><span>Analyze</span></a>
+          <a href="{{ url_for('main.dashboard') }}"><i data-lucide="history"></i><span>History</span></a>
+        {% else %}
+          <a href="{{ url_for('main.landing') }}"><i data-lucide="sparkles"></i><span>Overview</span></a>
+        {% endif %}
+      </nav>
+
+      <div class="topbar-actions">
+        {% if current_user.is_authenticated %}
+          <span class="user-chip">{{ current_user.username }}</span>
+          <form action="{{ url_for('auth.logout') }}" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="button button-ghost" type="submit">
+              <i data-lucide="log-out"></i>
+              <span>Logout</span>
+            </button>
+          </form>
+        {% else %}
+          <a class="button button-ghost" href="{{ url_for('auth.login') }}">Login</a>
+          <a class="button button-primary" href="{{ url_for('auth.register') }}">Start</a>
+        {% endif %}
+      </div>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-stack" role="status">
+          {% for category, message in messages %}
+            <div class="flash flash-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <main id="page-root">
+      {% block content %}{% endblock %}
+    </main>
+
+    <div id="toast-root" class="toast-root" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script type="module" src="{{ url_for('static', filename='js/core/app.js') }}"></script>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>

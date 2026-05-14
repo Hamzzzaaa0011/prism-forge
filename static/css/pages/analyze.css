@@ -1,0 +1,97 @@
+.tool-shell {
+  width: min(1080px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: var(--space-16) 0;
+}
+
+.tool-header {
+  max-width: 720px;
+}
+
+.tool-header h1 {
+  margin-top: var(--space-3);
+  font-size: clamp(2.6rem, 7vw, 5.6rem);
+}
+
+.tool-header p:last-child {
+  margin-top: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: 1.08rem;
+}
+
+.idea-form {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--space-5);
+  margin-top: var(--space-10);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: rgba(15, 15, 26, 0.78);
+  padding: clamp(1rem, 4vw, 2rem);
+  box-shadow: var(--shadow-lg);
+}
+
+.field-wide,
+.form-actions {
+  grid-column: 1 / -1;
+}
+
+.floating-field {
+  position: relative;
+}
+
+.char-count {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-3);
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.char-count.is-warning {
+  color: var(--color-warning);
+}
+
+.char-count.is-danger {
+  color: var(--color-error);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  padding-top: var(--space-2);
+}
+
+.form-note {
+  display: grid;
+  gap: 0.08rem;
+  max-width: 480px;
+  color: rgba(161, 161, 170, 0.78);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-shadow: 0 0 18px rgba(124, 58, 237, 0.1);
+}
+
+.form-note-line {
+  display: block;
+}
+
+.form-note-prism {
+  color: rgba(232, 222, 255, 0.94);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-shadow:
+    0 0 12px rgba(124, 58, 237, 0.28),
+    0 0 24px rgba(124, 58, 237, 0.12);
+}
+
+@media (max-width: 760px) {
+  .idea-form {
+    grid-template-columns: 1fr;
+  }
+}

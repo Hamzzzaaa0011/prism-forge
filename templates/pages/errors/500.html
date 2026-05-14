@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Error - PRISM{% endblock %}
+
+{% block content %}
+<section class="error-shell">
+  <div class="error-code"><span>5</span><span class="brand-mark error-mark"></span><span>0</span></div>
+  <h1>The lenses went dark.</h1>
+  <p>Try again in a moment.</p>
+  <a class="button button-primary" href="{{ url_for('main.landing') }}">Return home</a>
+</section>
+{% endblock %}

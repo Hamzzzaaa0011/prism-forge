@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Results - PRISM{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/results.css') }}">
+{% endblock %}
+
+{% block content %}
+{% set lens_defs = [
+  ('viability', 'Viability', 'var(--lens-viability)'),
+  ('risk', 'Risk', 'var(--lens-risk)'),
+  ('timing', 'Timing', 'var(--lens-timing)'),
+  ('differentiation', 'Differentiation', 'var(--lens-differentiation)'),
+  ('personal_fit', 'Personal Fit', 'var(--lens-personal-fit)')
+] %}
+
+<section class="results-shell"
+  data-analysis-id="{{ analysis.id }}"
+  data-status="{{ analysis.status }}"
+  data-should-stream="{{ 'true' if should_stream else 'false' }}">
+  <div class="results-top">
+    <div>
+      <p class="eyebrow">Prism analysis</p>
+      <h1>{{ analysis.idea.title }}</h1>
+      <p>{{ analysis.idea.description }}</p>
+    </div>
+
+    <div class="score-panel" data-score-panel>
+      <svg class="score-ring" viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="60" r="52" class="score-track"></circle>
+        <circle cx="60" cy="60" r="52" class="score-progress" data-score-progress></circle>
+      </svg>
+      <div class="score-number">
+        <strong data-score-number>{{ analysis.composite_score if analysis.composite_score is not none else "--" }}</strong>
+        <span>/100</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="results-prism" aria-hidden="true">
+    <svg viewBox="0 0 760 180" role="img">
+      <path d="M90 145 L155 35 L230 145 Z" fill="rgba(124,58,237,0.16)" stroke="#8B5CF6" stroke-width="2"/>
+      <path d="M155 35 L155 145" stroke="#A78BFA" stroke-width="1.5"/>
+      <path class="result-ray" d="M10 90 L90 90" stroke="#F8FAFC"/>
+      <path class="result-ray lens-ray-viability" d="M155 90 C230 20 315 18 420 25" stroke="#8B5CF6"/>
+      <path class="result-ray lens-ray-risk" d="M155 90 C250 55 320 55 450 60" stroke="#3B82F6"/>
+      <path class="result-ray lens-ray-timing" d="M155 90 C255 90 345 90 500 90" stroke="#14B8A6"/>
+      <path class="result-ray lens-ray-differentiation" d="M155 90 C250 122 330 128 540 130" stroke="#F59E0B"/>
+      <path class="result-ray lens-ray-personal_fit" d="M155 90 C245 160 350 166 590 165" stroke="#F97316"/>
+    </svg>
+  </div>
+
+  <article class="verdict-card" data-verdict-card>
+    <span>Verdict</span>
+    <p data-verdict>{{ analysis.verdict or "The lenses are aligning. Results will appear as the analysis completes." }}</p>
+  </article>
+
+  {% if analysis.status == "failed" %}
+    <div class="error-panel">
+      <i data-lucide="triangle-alert"></i>
+      <p>{{ analysis.error_message or "The lenses went dark. Try again in a moment." }}</p>
+    </div>
+  {% endif %}
+
+  <section class="lens-grid" aria-label="Five lens analysis">
+    {% for lens_key, lens_label, lens_color in lens_defs %}
+      {% set lens = analysis.lens_results|selectattr("lens_name", "equalto", lens_key)|first %}
+      <article class="lens-card {{ 'is-filled' if lens else 'is-loading' }}" data-lens-card="{{ lens_key }}" style="--lens-color: {{ lens_color }}">
+        <header>
+          <div>
+            <span class="lens-dot"></span>
+            <h2>{{ lens_label }}</h2>
+          </div>
+          <strong data-lens-score>{{ lens.score if lens else "--" }}</strong>
+        </header>
+        <h3 data-lens-headline>{{ lens.headline if lens else "Waiting for signal" }}</h3>
+        <p data-lens-analysis>{{ lens.analysis_text if lens else "" }}</p>
+        <footer>
+          <span>Blind spot</span>
+          <p data-lens-blind>{{ lens.blind_spot if lens else "" }}</p>
+        </footer>
+      </article>
+    {% endfor %}
+  </section>
+
+  <div class="results-actions">
+    <a class="button button-secondary" href="{{ url_for('main.dashboard') }}">
+      <i data-lucide="history"></i>
+      <span>History</span>
+    </a>
+    <a class="button button-primary" href="{{ url_for('main.analyze') }}">
+      <i data-lucide="plus"></i>
+      <span>Analyze another</span>
+    </a>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="{{ url_for('static', filename='js/pages/results.js') }}"></script>
+{% endblock %}

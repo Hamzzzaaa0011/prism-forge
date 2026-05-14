@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}History - PRISM{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="dashboard-shell">
+  <div class="dashboard-header">
+    <div>
+      <p class="eyebrow">Analysis history</p>
+      <h1>Your decisions, made visible.</h1>
+    </div>
+    <a class="button button-primary" href="{{ url_for('main.analyze') }}">
+      <i data-lucide="plus"></i>
+      <span>New analysis</span>
+    </a>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <span>Total</span>
+      <strong>{{ analyses|length }}</strong>
+    </div>
+    <div class="stat-card">
+      <span>Complete</span>
+      <strong>{{ completed_count }}</strong>
+    </div>
+    <div class="stat-card">
+      <span>Average</span>
+      <strong>{{ average_score if average_score is not none else "--" }}</strong>
+    </div>
+  </div>
+
+  {% if analyses %}
+    <div class="history-list">
+      {% for analysis in analyses %}
+        <a class="history-card" href="{{ url_for('main.results', analysis_id=analysis.id) }}" style="--lens-color: var(--lens-{{ analysis.idea.category if analysis.idea.category in ['startup','career','creative','financial','personal'] else 'viability' }});">
+          <div>
+            <span class="status-pill status-{{ analysis.status }}">{{ analysis.status }}</span>
+            <h2>{{ analysis.idea.title }}</h2>
+            <p>{{ analysis.verdict or analysis.error_message or "Analysis has not completed yet." }}</p>
+          </div>
+          <div class="history-score">
+            <span>{{ analysis.idea.category }}</span>
+            <strong>{{ analysis.composite_score if analysis.composite_score is not none else "--" }}</strong>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <span class="brand-mark empty-mark" aria-hidden="true"></span>
+      <h2>Your first idea is waiting to be seen.</h2>
+      <p>It takes 60 seconds. You have been sitting on it for longer than that.</p>
+      <a class="button button-primary" href="{{ url_for('main.analyze') }}">Analyze an Idea</a>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

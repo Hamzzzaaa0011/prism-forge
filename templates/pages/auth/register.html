@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Register - PRISM{% endblock %}
+
+{% block content %}
+<section class="auth-shell">
+  <div class="auth-panel">
+    <p class="eyebrow">Start clear</p>
+    <h1>Create your PRISM account.</h1>
+    <form class="stack-form" method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <label>
+        <span>Email</span>
+        <input name="email" type="email" autocomplete="email" required>
+      </label>
+      <label>
+        <span>Username</span>
+        <input name="username" type="text" autocomplete="username" minlength="3" maxlength="40" required>
+      </label>
+      <label>
+        <span>Password</span>
+        <input name="password" type="password" autocomplete="new-password" minlength="8" required>
+      </label>
+      <button class="button button-primary button-large" type="submit">
+        <i data-lucide="sparkles"></i>
+        <span>Create account</span>
+      </button>
+    </form>
+    <p class="auth-alt">Already registered? <a href="{{ url_for('auth.login') }}">Login</a></p>
+  </div>
+</section>
+{% endblock %}

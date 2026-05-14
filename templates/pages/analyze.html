@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Analyze - PRISM{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/analyze.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="tool-shell">
+  <div class="tool-header">
+    <p class="eyebrow">New analysis</p>
+    <h1>Put the idea under pressure.</h1>
+    <p>Give PRISM enough context to be useful. Vague ideas get vague verdicts.</p>
+  </div>
+
+  <form class="idea-form" id="idea-form" novalidate>
+    <label class="field">
+      <span>Idea title</span>
+      <input id="title" name="title" type="text" maxlength="140" placeholder="Leave my design job for freelance" required>
+    </label>
+
+    <label class="field">
+      <span>Category</span>
+      <select id="category" name="category" required>
+        <option value="startup">Startup</option>
+        <option value="career" selected>Career</option>
+        <option value="creative">Creative</option>
+        <option value="financial">Financial</option>
+        <option value="personal">Personal</option>
+      </select>
+    </label>
+
+    <label class="field field-wide floating-field">
+      <span>Describe the decision</span>
+      <textarea id="description" name="description" maxlength="2000" rows="7" placeholder="I want to leave my design job and freelance full-time starting next month..." required></textarea>
+      <small class="char-count" data-char-count>0 / 2000</small>
+    </label>
+
+    <label class="field field-wide">
+      <span>Context and constraints</span>
+      <textarea id="context" name="context" maxlength="1000" rows="4" placeholder="Savings, timeline, commitments, existing customers, skills, runway..."></textarea>
+    </label>
+
+    <div class="form-actions">
+      <button class="button button-primary button-large" type="submit" data-submit-button>
+        <i data-lucide="scan-line"></i>
+        <span>Analyze</span>
+      </button>
+      <p class="form-note" aria-label="Ideas look different when light passes through them. Prism reveals what every decision hides.">
+        <span class="form-note-line">Ideas look different when light passes through them.</span>
+        <span class="form-note-line"><span class="form-note-prism">Prism</span> reveals what every decision hides.</span>
+      </p>
+    </div>
+  </form>
+</section>
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="{{ url_for('static', filename='js/pages/analyze.js') }}"></script>
+{% endblock %}
