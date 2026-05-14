@@ -1,0 +1,7 @@
+Add screenshot files in this folder.
+Suggested filenames:
+01-landing.png
+02-analyze.png
+03-results.png
+04-dashboard.png
+05-auth.png
