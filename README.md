@@ -1,6 +1,6 @@
 # PRISM — AI Decision Intelligence
 
-PRISM helps teams and founders make clearer decisions by evaluating ideas across structured lenses, surfacing blind spots, and producing a concise verdict with a confidence score.
+PRISM is an AI-powered decision intelligence platform that helps founders, students, and teams evaluate ideas objectively. By analyzing an idea through multiple decision lenses, PRISM highlights strengths, risks, blind spots, and opportunities before a final recommendation is generated.
 
 Live demo: LINK · Video walkthrough: LINK · Case study: LINK
 
@@ -118,15 +118,8 @@ This repository does not yet include a license. Add a `LICENSE` file (e.g., MIT)
 ## Maintainers & Contact
 
 - Malik Hamza — maintainer
-- For questions or demo requests: YOUR EMAIL
-- Portfolio: YOUR SITE
+- For questions or demo requests:Hamzamalik8327@gmail.com
+- Portfolio: https://prism-sepia-chi.vercel.app
 
 ---
 
-If you'd like, I can also:
-
-- add a `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md`
-- create a minimal `Procfile` or `Dockerfile` for deployments
-- replace placeholder links and contact info with real values
-
-Tell me which of those you'd like next.
