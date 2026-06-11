@@ -1,38 +1,38 @@
 # PRISM Screenshot Checklist
 
-## Capture settings
-- Resolution: 1600x900 for hero and full pages
+Use this checklist before adding screenshots to the README. The goal is to make the repository feel like a polished product demo, not a local development dump.
+
+## Capture Settings
+
+- Resolution: 1600x900 for desktop captures
+- Browser: Chrome or Edge with a clean profile
 - Zoom: 100%
-- Browser: Chrome or Edge, clean profile
-- Window size: consistent across all shots
-- Lighting: avoid system notifications and overlays
+- Theme: use the default app theme
+- Data: use realistic demo analyses, not placeholder text
+- Privacy: do not show real API keys, personal accounts, notifications, or local file paths
 
-## Required shots
-1. Landing hero (01-landing.png)
-   - Show the hero headline and prism visual
-2. Analyze form with a filled idea (02-analyze.png)
-   - Include title, category, description, and context
-3. Results page with full lenses (03-results.png)
-   - Make sure composite score and verdict are visible
-4. Dashboard history (04-dashboard.png)
-   - Show total, complete, and average stats
-5. Auth flow (05-auth.png)
-   - Capture login or register screen
+## Required README Shots
 
-## Optional shots
-- Streaming in progress (06-streaming.png)
-- Error state example (07-error.png)
+1. Dashboard Screenshot - `assets/screenshots/01-dashboard.png`
+   - Show summary metrics and recent analyses.
+2. Analysis Screenshot - `assets/screenshots/02-analysis.png`
+   - Show a filled idea form with realistic context.
+3. Results Screenshot - `assets/screenshots/03-results.png`
+   - Show composite score, verdict, and several lens cards.
+4. History Screenshot - `assets/screenshots/04-history.png`
+   - Show saved analyses and score history.
 
-## File naming
-Use numeric prefixes for ordering:
-01-landing.png
-02-analyze.png
-03-results.png
-04-dashboard.png
-05-auth.png
-06-streaming.png
-07-error.png
+## Optional Portfolio Shots
 
-## Placement
-Save final images in assets/screenshots/.
-Update README links after capture.
+- Landing page - `assets/screenshots/05-landing.png`
+- Auth screen - `assets/screenshots/06-auth.png`
+- Streaming state - `assets/screenshots/07-streaming.png`
+- Error state - `assets/screenshots/08-error.png`
+
+## Quality Bar
+
+- Text should be readable without zooming.
+- The app should contain realistic data.
+- Screenshots should have consistent browser size and crop.
+- Avoid showing development console errors or browser extensions.
+- Commit screenshots only after the README paths match the final filenames.

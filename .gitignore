@@ -50,7 +50,6 @@ logs/
 
 # Static uploads / user assets
 uploads/
-assets/screenshots/
 
 # OS files
 Thumbs.db
