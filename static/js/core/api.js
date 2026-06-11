@@ -25,14 +25,18 @@ export const API = {
       credentials: "include",
     });
 
+    const contentType = res.headers.get("Content-Type") || "";
+    const payload = contentType.includes("application/json")
+      ? await res.json().catch(() => null)
+      : null;
+
     if (res.status === 401) {
       window.location.href = "/auth/login";
       return null;
     }
 
-    const payload = await res.json().catch(() => null);
     if (!res.ok || payload?.success === false) {
-      const message = payload?.error?.message || "Request failed.";
+      const message = payload?.error?.message || `Request failed (${res.status}).`;
       throw new APIError(message, res.status, payload);
     }
     return payload?.data || {};

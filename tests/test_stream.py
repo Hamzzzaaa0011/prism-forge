@@ -84,3 +84,12 @@ def test_stream_persists_mocked_groq_result(client, app, monkeypatch):
     assert saved.status == "complete"
     assert saved.composite_score == 70
     assert len(saved.lens_results) == 5
+
+
+def test_stream_unauthenticated_returns_sse_failure(client):
+    response = client.get("/api/v1/analyze/stream/1")
+
+    assert response.status_code == 200
+    assert response.mimetype == "text/event-stream"
+    assert b'"type": "failed"' in response.data
+    assert b"Sign in again" in response.data

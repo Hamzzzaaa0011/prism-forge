@@ -15,6 +15,7 @@ function setText(parent, selector, value) {
 }
 
 function renderLens(lensName, lens) {
+  if (!lens || typeof lens !== "object") return;
   const card = findLensCard(lensName);
   if (!card || rendered.has(lensName)) return;
 
@@ -37,7 +38,7 @@ function renderLens(lensName, lens) {
 function animateScore(score) {
   const number = document.querySelector("[data-score-number]");
   const progress = document.querySelector("[data-score-progress]");
-  const normalized = Number(score) || 0;
+  const normalized = Math.max(0, Math.min(100, Number(score) || 0));
   const circumference = 2 * Math.PI * 52;
 
   if (progress) {
@@ -63,10 +64,15 @@ function animateScore(score) {
 }
 
 function renderComplete(analysis) {
+  if (!analysis || typeof analysis !== "object") {
+    showToast("The analysis response was incomplete. Refresh to try again.", "error");
+    return;
+  }
   const verdict = document.querySelector("[data-verdict]");
   if (verdict) verdict.textContent = analysis.verdict || "";
   animateScore(analysis.composite_score);
-  (analysis.lenses || []).forEach((lens) => renderLens(lens.lens_name, lens));
+  const lenses = Array.isArray(analysis.lenses) ? analysis.lenses : [];
+  lenses.forEach((lens) => renderLens(lens.lens_name, lens));
   showToast("Analysis complete.", "success");
 }
 
@@ -159,13 +165,27 @@ function initStream() {
   const source = new EventSource(`/api/v1/analyze/stream/${root.dataset.analysisId}`);
 
   source.onmessage = (event) => {
-    const payload = JSON.parse(event.data);
+    let payload;
+    try {
+      payload = JSON.parse(event.data);
+    } catch {
+      source.close();
+      showToast("The stream returned unreadable data. Refresh to check the saved result.", "error");
+      return;
+    }
+
+    if (!payload || typeof payload !== "object") {
+      source.close();
+      showToast("The stream returned an empty response. Refresh to check the saved result.", "error");
+      return;
+    }
+
     if (payload.type === "started") {
       showToast("Analysis started.", "info");
       return;
     }
     if (payload.type === "chunk") {
-      accumulated += payload.chunk;
+      accumulated += String(payload.chunk || "");
       tryRenderPartialLenses();
       return;
     }

@@ -2,7 +2,7 @@
 
 {% block title %}Analyze - PRISM{% endblock %}
 {% block styles %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/analyze.css') }}">
+  <link rel="stylesheet" href="{{ asset_url('css/pages/analyze.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -56,5 +56,5 @@
 {% endblock %}
 
 {% block scripts %}
-  <script type="module" src="{{ url_for('static', filename='js/pages/analyze.js') }}"></script>
+  <script type="module" src="{{ asset_url('js/pages/analyze.js') }}"></script>
 {% endblock %}

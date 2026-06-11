@@ -52,3 +52,23 @@ def test_analysis_access_is_user_scoped(client, app):
     response = client.get(f"/api/v1/analyses/{analysis_id}")
 
     assert response.status_code == 404
+
+
+def test_api_requires_json_auth_response(client):
+    response = client.get("/api/v1/ideas")
+    payload = response.get_json()
+
+    assert response.status_code == 401
+    assert response.content_type.startswith("application/json")
+    assert payload["success"] is False
+    assert payload["error"]["code"] == "AUTH_REQUIRED"
+
+
+def test_unknown_api_route_returns_json_404(client):
+    response = client.get("/api/v1/missing")
+    payload = response.get_json()
+
+    assert response.status_code == 404
+    assert response.content_type.startswith("application/json")
+    assert payload["success"] is False
+    assert payload["error"]["code"] == "NOT_FOUND"

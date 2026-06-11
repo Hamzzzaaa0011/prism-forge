@@ -1,131 +1,132 @@
-# PRISM
-AI decision intelligence that reveals every angle.
+# PRISM — AI Decision Intelligence
 
-Live demo: LINK
-Video walkthrough: LINK
-Case study: LINK
+PRISM helps teams and founders make clearer decisions by evaluating ideas across structured lenses, surfacing blind spots, and producing a concise verdict with a confidence score.
+
+Live demo: LINK · Video walkthrough: LINK · Case study: LINK
 
 ## Overview
-PRISM is a full-stack AI product that evaluates ideas and decisions across five structured lenses and returns a clear verdict, composite score, and blind spot analysis. It is built for clarity, not encouragement, and stores analysis history for ongoing comparison.
 
-## Why it stands out
-- Five-lens evaluation system with weighted composite scoring
-- Blind spot detection for every lens
-- Real-time streaming analysis updates (server-sent events)
-- Authenticated user flow with persistent history
-- Structured JSON validation for reliable model output
+PRISM is a full-stack web application that analyzes ideas using a five-lens framework, returning a weighted composite score, lens-by-lens breakdowns, and blind-spot highlights. It focuses on actionable clarity and preserves analysis history for longitudinal comparison.
 
-## Screenshots
-Add your captures to `assets/screenshots/` and update the links below.
+## Highlights
 
-- Landing hero: ![Landing](assets/screenshots/01-landing.png)
-- Analyze form (filled): ![Analyze](assets/screenshots/02-analyze.png)
-- Results (complete): ![Results](assets/screenshots/03-results.png)
-- Dashboard history: ![Dashboard](assets/screenshots/04-dashboard.png)
-- Auth flow: ![Auth](assets/screenshots/05-auth.png)
+- Five-lens, weighted evaluation with transparent reasoning
+- Blind-spot detection and concise recommendations
+- Real-time streaming analysis (server-sent events) for visible progress
+- Authenticated users with persistent history and comparison tools
+- Strong schema validation of AI outputs for reliability
 
-## Tech stack
-- Backend: Flask, SQLAlchemy, Flask-Login, Flask-WTF, Flask-Migrate, Flask-Limiter
-- AI: Groq API, Pydantic validation
-- Frontend: HTML, CSS, JavaScript
-- Database: SQLite for local, Postgres-ready for production
+## Tech Stack
 
-## Installation
-1. Create and activate a virtual environment.
-2. Install dependencies:
-	```bash
-	pip install -r requirements.txt
-	```
+- Backend: Flask
+- Database: SQLite (local) / Postgres-ready for production
+- ORM & Auth: SQLAlchemy, Flask-Login
+- Validation: Pydantic
+- AI: Groq (LLM inference)
+- Frontend: Vanilla HTML, CSS, JavaScript
 
-## Local setup
-1. Create a local environment file:
-	```bash
-	# macOS/Linux
-	cp .env.example .env
+## Quick Start (Local Development)
 
-	# Windows PowerShell
-	Copy-Item .env.example .env
-	```
-2. Initialize the database:
-	```bash
-	flask --app run.py init-db
-	```
-3. Start the app:
-	```bash
-	python run.py
-	```
-4. Open http://127.0.0.1:5000
+1. Clone the repo and enter the project directory:
 
-## Environment variables
-| Name | Description | Example |
-| --- | --- | --- |
-| SECRET_KEY | Flask secret key | change-me-in-development |
-| DATABASE_URL | Database connection string | sqlite:///prism.db |
-| GROQ_API_KEY | Groq API key | your-key |
-| PRISM_MODEL | Groq model ID | llama-3.3-70b-versatile |
-| RATELIMIT_STORAGE_URI | Rate limit storage | memory:// |
-| FLASK_APP | Flask entrypoint | run.py |
-| FLASK_ENV | Environment | development |
-
-## Usage
-1. Register or sign in.
-2. Submit an idea with context.
-3. Watch the real-time analysis stream.
-4. Review lens breakdowns, blind spots, and verdict.
-5. Track history and compare decisions over time.
-
-## API setup
-PRISM uses Groq for LLM inference.
-1. Create a Groq API key.
-2. Set GROQ_API_KEY in your environment.
-3. Optionally set PRISM_MODEL to target a specific model.
-
-## API endpoints
-- POST /api/v1/ideas
-- GET /api/v1/ideas
-- POST /api/v1/analyze
-- GET /api/v1/analyze/stream/<analysis_id>
-- GET /api/v1/analyses
-- GET /api/v1/analyses/<analysis_id>
-
-## Deployment
-For production use a WSGI server. Example with gunicorn (install separately):
 ```bash
-gunicorn "app:create_app('production')"
+git clone <repo-url>
+cd "new project"
 ```
 
-Deployment notes:
-- Set a strong SECRET_KEY
-- Use a production DATABASE_URL
-- Configure RATELIMIT_STORAGE_URI for multi-instance deployments
-- Ensure HTTPS so secure cookies work properly
+2. Create and activate a virtual environment (Windows example):
 
-### Render (recommended)
-- Build: `pip install -r requirements.txt`
-- Start: `gunicorn "app:create_app('production')"`
-- Add environment variables in the Render dashboard
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
 
-### Vercel
-Flask is not a native fit without a serverless wrapper. For a zero-change deploy, use Render or Railway. If you must use Vercel, add a serverless entrypoint and adapt the routing.
+3. Install dependencies:
 
-## Tests
+```bash
+pip install -r requirements.txt
+```
+
+4. Create a copy of the example environment file and set values:
+
+```bash
+copy .env.example .env
+# Edit .env and set values like FLASK_ENV, DATABASE_URL, GROQ_API_KEY, SECRET_KEY
+```
+
+5. Initialize the database (if migrations are used):
+
+```bash
+flask db upgrade
+```
+
+6. Run the development server:
+
+```bash
+flask --app app --debug run
+```
+
+Open http://127.0.0.1:5000 in your browser.
+
+## Environment Variables
+
+At minimum you should set the following in `.env` or your environment:
+
+- `FLASK_ENV` — `development` or `production`
+- `DATABASE_URL` — e.g. `sqlite:///instance/app.db` or Postgres URL
+- `SECRET_KEY` — Flask session secret
+- `GROQ_API_KEY` — API key for the LLM provider
+
+## Running Tests
+
+Run the test suite with:
+
 ```bash
 pytest
 ```
 
-## Roadmap
-- Exportable reports
-- Comparison views across analyses
-- Team and workspace collaboration
-- Model presets for different decision types
+## Deployment Notes
+
+- Render/Railway: recommended for straightforward server deployment. Use `gunicorn` and set environment variables in the service dashboard.
+- Vercel: requires a serverless wrapper for Flask — for minimal effort prefer Render or Railway.
+
+Example production start:
+
+```bash
+pip install -r requirements.txt
+gunicorn "app:create_app('production')"
+```
 
 ## Contributing
-Contributions are welcome. Please open an issue for major changes and keep PRs focused.
+
+We welcome contributions. Please follow these guidelines:
+
+- Open an issue to discuss larger features or breaking changes.
+- Keep PRs small and focused; include tests for new behavior.
+- Run tests locally before submitting a PR.
+
+## Roadmap
+
+- Exportable PDF/CSV reports
+- Team and workspace collaboration features
+- Advanced model presets and templates
 
 ## License
-Add your license here.
 
-## Contact
-Name: YOUR NAME
-Email: YOUR EMAIL
-Portfolio: YOUR SITE
+This repository does not yet include a license. Add a `LICENSE` file (e.g., MIT) to clarify usage terms.
+
+## Maintainers & Contact
+
+- Malik Hamza — maintainer
+- For questions or demo requests: YOUR EMAIL
+- Portfolio: YOUR SITE
+
+---
+
+If you'd like, I can also:
+
+- add a `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md`
+- create a minimal `Procfile` or `Dockerfile` for deployments
+- replace placeholder links and contact info with real values
+
+Tell me which of those you'd like next.

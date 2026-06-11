@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "builds": [{ "src": "api/index.py", "use": "@vercel/python" }],
+  "routes": [{ "src": "/(.*)", "dest": "api/index.py" }],
+  "env": {
+    "PRISM_INSTANCE_PATH": "/tmp/instance",
+    "PRISM_AUTO_CREATE_DB": "true",
+    "RATELIMIT_STORAGE_URI": "memory://"
+  }
+}

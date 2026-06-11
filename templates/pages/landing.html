@@ -2,7 +2,7 @@
 
 {% block title %}PRISM - See every angle{% endblock %}
 {% block styles %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/landing.css') }}">
+  <link rel="stylesheet" href="{{ asset_url('css/pages/landing.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -76,5 +76,5 @@
 {% endblock %}
 
 {% block scripts %}
-  <script type="module" src="{{ url_for('static', filename='js/pages/landing.js') }}"></script>
+  <script type="module" src="{{ asset_url('js/pages/landing.js') }}"></script>
 {% endblock %}

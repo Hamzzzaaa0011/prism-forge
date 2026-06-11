@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 
 from flask import Blueprint, Response, stream_with_context
-from flask_login import current_user, login_required
+from flask_login import current_user
 from pydantic import ValidationError as PydanticValidationError
 
 from app.extensions import db, limiter
@@ -24,13 +24,21 @@ def _sse(payload: dict) -> str:
 
 
 @stream_bp.route("/analyze/stream/<int:analysis_id>", methods=["GET"])
-@login_required
 @limiter.limit("10 per hour")
 def stream_analysis(analysis_id: int):
-    user_id = current_user.id
+    user_id = current_user.id if current_user.is_authenticated else None
 
     @stream_with_context
     def generate():
+        if user_id is None:
+            yield _sse(
+                {
+                    "type": "failed",
+                    "error": "Sign in again to continue this analysis.",
+                }
+            )
+            return
+
         analysis = Analysis.query.filter_by(id=analysis_id, user_id=user_id).first()
         if not analysis:
             yield _sse(

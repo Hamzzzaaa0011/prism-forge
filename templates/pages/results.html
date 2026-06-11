@@ -2,7 +2,7 @@
 
 {% block title %}Results - PRISM{% endblock %}
 {% block styles %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/results.css') }}">
+  <link rel="stylesheet" href="{{ asset_url('css/pages/results.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -97,5 +97,5 @@
 {% endblock %}
 
 {% block scripts %}
-  <script type="module" src="{{ url_for('static', filename='js/pages/results.js') }}"></script>
+  <script type="module" src="{{ asset_url('js/pages/results.js') }}"></script>
 {% endblock %}

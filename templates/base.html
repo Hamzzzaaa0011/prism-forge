@@ -8,9 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/tokens.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+    <link rel="stylesheet" href="{{ asset_url('css/tokens.css') }}">
+    <link rel="stylesheet" href="{{ asset_url('css/base.css') }}">
+    <link rel="stylesheet" href="{{ asset_url('css/components.css') }}">
     {% block styles %}{% endblock %}
   </head>
   <body class="{% block body_class %}{% endblock %}">
@@ -68,7 +68,7 @@
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script type="module" src="{{ url_for('static', filename='js/core/app.js') }}"></script>
+    <script type="module" src="{{ asset_url('js/core/app.js') }}"></script>
     {% block scripts %}{% endblock %}
   </body>
 </html>
