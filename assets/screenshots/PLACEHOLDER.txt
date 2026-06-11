@@ -1,7 +1,12 @@
-Add screenshot files in this folder.
-Suggested filenames:
-01-landing.png
-02-analyze.png
-03-results.png
-04-dashboard.png
-05-auth.png
+Final portfolio screenshots live in this folder.
+
+Current README filenames:
+01-landing.jpeg
+02-analysis.jpeg
+03-results.jpeg
+
+Next captures to add:
+04-dashboard.jpeg
+05-history.jpeg
+06-auth.jpeg
+07-streaming.jpeg

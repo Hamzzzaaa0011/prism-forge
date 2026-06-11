@@ -1,17 +1,45 @@
 # Contributing to PRISM
 
-Thanks for your interest in contributing! Small, focused contributions make a big difference.
+PRISM is a portfolio-grade Flask project, so contributions should keep the codebase easy to review, run, and explain.
 
-How to contribute
-1. Fork the repo and create a feature branch: `git checkout -b feat/your-feature`
-2. Install dependencies and run tests locally: `pip install -r requirements.txt` then `pytest`
-3. Keep changes focused and document behavior in tests or README updates
-4. Open a PR against `main` with a clear description and a short changelog entry
+## Local Setup
 
-Guidelines
-- Write tests for new features or bug fixes.
-- Keep code style consistent with the project (PEP8 / black-friendly).
-- For larger features, open an issue first to discuss design and scope.
+```bash
+python -m venv .venv
+pip install -r requirements.txt
+cp .env.example .env
+flask --app run.py init-db
+flask --app run.py --debug run
+```
 
-Maintainer contact
-- Malik Hamza — hamzamalik8327@mil.com
+On Windows PowerShell, use:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+Copy-Item .env.example .env
+```
+
+## Contribution Guidelines
+
+- Keep pull requests small and focused.
+- Add or update tests for behavior changes.
+- Include screenshots or short clips for UI changes.
+- Avoid committing secrets, local databases, virtual environments, or generated cache files.
+- Open an issue before large architectural changes or changes to the analysis schema.
+
+## Test Command
+
+```bash
+pytest
+```
+
+## Pull Request Checklist
+
+- The change has a clear user or maintainer benefit.
+- Tests pass locally.
+- Documentation was updated when behavior, setup, or configuration changed.
+- New environment variables were added to `.env.example`.
+
+## Maintainer
+
+Maintained by Malik Hamza.
