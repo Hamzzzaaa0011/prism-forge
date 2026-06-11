@@ -59,6 +59,9 @@ Issues found:
 - `assets/screenshots/` was ignored, which would prevent portfolio screenshots from being committed normally.
 - There was no security policy.
 - A dedicated confidence score is not yet persisted separately from the weighted composite score.
+- Root-level exported screenshot files made the repository look uncurated.
+- The repository did not have a CI workflow for running tests on pull requests.
+- Direct Python dependencies were version-ranged instead of pinned.
 
 Improvements made:
 
@@ -67,3 +70,11 @@ Improvements made:
 - Updated `.env.example` with all documented runtime variables.
 - Removed `assets/screenshots/` from `.gitignore`.
 - Added a roadmap item for a first-class confidence score.
+- Removed duplicate root-level screenshot exports and renamed tracked screenshot assets.
+- Added a GitHub Actions workflow that runs `pytest`.
+- Pinned direct Python dependencies in `requirements.txt`.
+
+## Remaining Notes
+
+- The short commit history cannot be honestly rewritten without manufacturing history. A cleaner approach is to make future changes through focused pull requests.
+- A `v0.1.0` tag should be created after the documentation cleanup is merged into `main`.

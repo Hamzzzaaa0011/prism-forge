@@ -11,23 +11,27 @@ Use this checklist before adding screenshots to the README. The goal is to make 
 - Data: use realistic demo analyses, not placeholder text
 - Privacy: do not show real API keys, personal accounts, notifications, or local file paths
 
-## Required README Shots
+## Current README Shots
 
-1. Dashboard Screenshot - `assets/screenshots/01-dashboard.png`
-   - Show summary metrics and recent analyses.
-2. Analysis Screenshot - `assets/screenshots/02-analysis.png`
+1. Landing Screenshot - `assets/screenshots/01-landing.jpeg`
+   - Show the first screen and primary product positioning.
+2. Analysis Screenshot - `assets/screenshots/02-analysis.jpeg`
    - Show a filled idea form with realistic context.
-3. Results Screenshot - `assets/screenshots/03-results.png`
+3. Results Screenshot - `assets/screenshots/03-results.jpeg`
    - Show composite score, verdict, and several lens cards.
-4. History Screenshot - `assets/screenshots/04-history.png`
+
+## Next Screenshots To Capture
+
+1. Dashboard Screenshot - `assets/screenshots/04-dashboard.jpeg`
+   - Show summary metrics and recent analyses.
+2. History Screenshot - `assets/screenshots/05-history.jpeg`
    - Show saved analyses and score history.
 
 ## Optional Portfolio Shots
 
-- Landing page - `assets/screenshots/05-landing.png`
-- Auth screen - `assets/screenshots/06-auth.png`
-- Streaming state - `assets/screenshots/07-streaming.png`
-- Error state - `assets/screenshots/08-error.png`
+- Auth screen - `assets/screenshots/06-auth.jpeg`
+- Streaming state - `assets/screenshots/07-streaming.jpeg`
+- Error state - `assets/screenshots/08-error.jpeg`
 
 ## Quality Bar
 

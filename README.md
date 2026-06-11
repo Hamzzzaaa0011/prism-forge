@@ -31,14 +31,13 @@ PRISM gives those decisions a repeatable review process. Instead of asking an AI
 
 ## Screenshots
 
-Screenshots are intentionally left as markdown placeholders until production captures are added. Use the checklist in [docs/screenshot-checklist.md](docs/screenshot-checklist.md) before replacing these placeholders.
+Current product captures live in `assets/screenshots/`. Use the checklist in [docs/screenshot-checklist.md](docs/screenshot-checklist.md) before replacing them with final production screenshots.
 
-| View | Placeholder |
-| --- | --- |
-| Dashboard Screenshot | Add `assets/screenshots/01-dashboard.png` |
-| Analysis Screenshot | Add `assets/screenshots/02-analysis.png` |
-| Results Screenshot | Add `assets/screenshots/03-results.png` |
-| History Screenshot | Add `assets/screenshots/04-history.png` |
+| Landing | Analysis | Results |
+| --- | --- | --- |
+| ![PRISM landing page](assets/screenshots/01-landing.jpeg) | ![PRISM analysis form](assets/screenshots/02-analysis.jpeg) | ![PRISM results page](assets/screenshots/03-results.jpeg) |
+
+Planned captures: dashboard history, streaming state, and final deployment screenshots.
 
 ## Architecture
 
@@ -120,7 +119,7 @@ Build a fixed-scope micro-SaaS studio for non-technical founders. The service wo
 |-- static/                  # CSS and JavaScript assets
 |-- templates/               # Jinja templates for app pages
 |-- tests/                   # pytest coverage for app behavior
-|-- run.py                   # Local Flask entry point
+|-- run.py                   # Local Flask CLI and development entry point
 |-- requirements.txt         # Python dependencies
 |-- vercel.json              # Vercel routing/build config
 `-- LICENSE                  # MIT license
@@ -154,6 +153,8 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
+Dependencies are pinned for reproducible installs. Update versions intentionally and run the full test suite before committing dependency changes.
+
 Create your local environment file:
 
 ```bash
@@ -181,6 +182,8 @@ Copy-Item .env.example .env
 | `PRISM_AUTO_CREATE_DB` | Optional | Set to `true` for simple demo deployments that should create tables on startup. |
 
 ## Running Locally
+
+Use `run.py` for local development commands. It is a thin wrapper around the Flask application factory in `app/__init__.py`; the factory remains the source of truth for app creation.
 
 Initialize the database:
 
@@ -223,6 +226,8 @@ pytest tests/test_stream.py -q
 
 The test suite uses Flask's test client and mocked AI responses where needed, so a real `GROQ_API_KEY` is not required for automated tests.
 
+GitHub Actions also runs `pytest` on pushes to `main`, pushes to `codex/**` branches, and pull requests targeting `main`.
+
 ## Deployment
 
 ### Vercel
@@ -264,7 +269,8 @@ flask --app run.py init-db
 - Add team workspaces and shared decision history
 - Add configurable lens weights and reusable analysis templates
 - Add database migrations for production schema changes
-- Add CI coverage and lint checks for pull requests
+- Add linting, formatting, and type-checking jobs to CI
+- Publish a `v0.1.0` release after the first cleaned-up portfolio version is merged
 
 ## Contributing
 
