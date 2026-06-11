@@ -1,37 +1,35 @@
 # PRISM — AI Decision Intelligence
 
-PRISM is an AI-powered decision intelligence platform that helps founders, students, and teams evaluate ideas objectively. By analyzing an idea through multiple decision lenses, PRISM highlights strengths, risks, blind spots, and opportunities before a final recommendation is generated.
+PRISM is an AI-powered decision intelligence platform that helps founders, students, and teams evaluate ideas objectively. By analyzing an idea through multiple decision lenses, PRISM highlights strengths, exposes blind spots, and surfaces actionable insights.
 
-Live demo: LINK · Video walkthrough: LINK · Case study: LINK
+**Live demo:** [Coming soon] · **Video walkthrough:** [Coming soon] · **Case study:** [Coming soon]
 
 ## Overview
 
-PRISM is a full-stack web application that analyzes ideas using a five-lens framework, returning a weighted composite score, lens-by-lens breakdowns, and blind-spot highlights. It focuses on actionable clarity and preserves analysis history for longitudinal comparison.
+PRISM is a full-stack web application that analyzes ideas using a five-lens framework, returning a weighted composite score, lens-by-lens breakdowns, and blind-spot highlights. It focuses on actionable intelligence and transparent reasoning—so you understand *why* an idea scores as it does.
 
 ## Highlights
 
-- Five-lens, weighted evaluation with transparent reasoning
-- Blind-spot detection and concise recommendations
-- Real-time streaming analysis (server-sent events) for visible progress
-- Authenticated users with persistent history and comparison tools
-- Strong schema validation of AI outputs for reliability
+- **Five-lens, weighted evaluation** with transparent reasoning
+- **Blind-spot detection** and concise recommendations
+- **Real-time streaming analysis** (server-sent events) for visible progress
+- **Authenticated users** with persistent history and comparison tools
+- **Strong schema validation** of AI outputs for reliability
 
 ## Tech Stack
 
-- Backend: Flask
-- Database: SQLite (local) / Postgres-ready for production
-- ORM & Auth: SQLAlchemy, Flask-Login
-- Validation: Pydantic
-- AI: Groq (LLM inference)
-- Frontend: Vanilla HTML, CSS, JavaScript
+- **Backend:** Flask
+- **Database:** SQLite (local) / Postgres-ready for production
+- **ORM & Auth:** SQLAlchemy, Flask-Login
+- **Validation:** Pydantic
+- **AI:** Groq (LLM inference)
+- **Frontend:** Vanilla HTML, CSS, JavaScript
 
 ## Screenshots
 
-Add screenshots to `assets/screenshots/` and reference them here:
-
-- Landing hero: assets/screenshots/01-whatsapp-1.jpeg
-- Analyze form: assets/screenshots/02-whatsapp-2.jpeg
-- Results: assets/screenshots/03-whatsapp-3.jpeg
+- Landing hero: `assets/screenshots/01-whatsapp-1.jpeg`
+- Analyze form: `assets/screenshots/02-whatsapp-2.jpeg`
+- Results: `assets/screenshots/03-whatsapp-3.jpeg`
 
 ![Landing](assets/screenshots/01-whatsapp-1.jpeg)
 ![Analyze](assets/screenshots/02-whatsapp-2.jpeg)
@@ -42,8 +40,8 @@ Add screenshots to `assets/screenshots/` and reference them here:
 1. Clone the repo and enter the project directory:
 
 ```bash
-git clone <repo-url>
-cd "new project"
+git clone https://github.com/Hamzzzaaa0011/prism-forge.git
+cd prism-forge
 ```
 
 2. Create and activate a virtual environment (Windows example):
@@ -82,7 +80,7 @@ Open http://127.0.0.1:5000 in your browser.
 
 ## Environment Variables
 
-At minimum you should set the following in `.env` or your environment:
+At minimum, set the following in `.env` or your environment:
 
 - `FLASK_ENV` — `development` or `production`
 - `DATABASE_URL` — e.g. `sqlite:///instance/app.db` or Postgres URL
@@ -99,8 +97,8 @@ pytest
 
 ## Deployment Notes
 
-- Render/Railway: recommended for straightforward server deployment. Use `gunicorn` and set environment variables in the service dashboard.
-- Vercel: requires a serverless wrapper for Flask — for minimal effort prefer Render or Railway.
+- **Render/Railway:** Recommended for straightforward server deployment. Use `gunicorn` and set environment variables in the service dashboard.
+- **Vercel:** Requires a serverless wrapper for Flask — for minimal effort, prefer Render or Railway.
 
 Example production start:
 
@@ -129,9 +127,10 @@ This repository does not yet include a license. Add a `LICENSE` file (e.g., MIT)
 
 ## Maintainers & Contact
 
-- Malik Hamza — maintainer
-- For questions or demo requests:Hamzamalik8327@gmail.com
-- Portfolio: https://prism-sepia-chi.vercel.app
+- **Malik Hamza** — maintainer
+- **Email:** hamzamalik8327@gmail.com
+- **Portfolio:** https://prism-sepia-chi.vercel.app
 
 ---
 
+**Repository Status:** ✅ Public — PRISM is an AI project and portfolio piece.
