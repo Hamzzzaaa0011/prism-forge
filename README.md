@@ -25,6 +25,18 @@ PRISM is a full-stack web application that analyzes ideas using a five-lens fram
 - AI: Groq (LLM inference)
 - Frontend: Vanilla HTML, CSS, JavaScript
 
+## Screenshots
+
+Add screenshots to `assets/screenshots/` and reference them here:
+
+- Landing hero: assets/screenshots/01-whatsapp-1.jpeg
+- Analyze form: assets/screenshots/02-whatsapp-2.jpeg
+- Results: assets/screenshots/03-whatsapp-3.jpeg
+
+![Landing](assets/screenshots/01-whatsapp-1.jpeg)
+![Analyze](assets/screenshots/02-whatsapp-2.jpeg)
+![Results](assets/screenshots/03-whatsapp-3.jpeg)
+
 ## Quick Start (Local Development)
 
 1. Clone the repo and enter the project directory:
