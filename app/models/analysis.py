@@ -1,3 +1,12 @@
+"""
+Analysis models for PRISM.
+
+Stores analysis results with lens-by-lens breakdowns and composite scores.
+
+Copyright (c) 2026 Malik Hamza
+Licensed under the MIT License (see LICENSE file)
+"""
+
 from __future__ import annotations
 
 from datetime import datetime, timezone
